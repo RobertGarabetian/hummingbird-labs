@@ -11,7 +11,7 @@ export async function POST(request: Request) {
 
     const data = await resend.emails.send({
       from: 'Hummingbird Labs <onboarding@resend.dev>',
-      to: ['robertgarabetian90@gmail.com'], // Replace with your email
+      to: 'robertgarabetian90@gmail.com', // Replace with your email
       subject: `New Contact Form Submission from ${name}`,
       react: ContactFormEmail({ name, email, business, message }),
       reply_to: email,
