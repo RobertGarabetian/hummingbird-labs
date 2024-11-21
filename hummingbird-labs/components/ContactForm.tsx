@@ -1,5 +1,5 @@
 "use client";
-
+import emailjs from "@emailjs/browser";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
@@ -33,6 +33,9 @@ const formSchema = z.object({
 });
 
 export default function ContactForm() {
+  const emailJsServiceId = process.env.NEXT_PUBLIC_SERVICE_ID ?? "";
+  const emailJsTemplateId = process.env.NEXT_PUBLIC_TEMPLATE_ID ?? "";
+  const emailJsPublicKey = process.env.NEXT_PUBLIC_PUBLIC_KEY ?? "";
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -48,22 +51,26 @@ export default function ContactForm() {
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
       setIsSubmitting(true);
-      const response = await fetch("/api/send", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(values),
-      });
 
-      if (!response.ok) {
-        throw new Error("Failed to send message");
-      }
+      const templateParams = {
+        from_name: values.name,
+        from_email: values.email,
+        business_name: values.business,
+        message: values.message,
+      };
+
+      await emailjs.send(
+        emailJsServiceId, // Replace with your EmailJS service ID
+        emailJsTemplateId, // Replace with your EmailJS template ID
+        templateParams,
+        emailJsPublicKey // Replace with your EmailJS public key
+      );
 
       toast.success("Message sent successfully! We'll be in touch soon.");
       form.reset();
     } catch (error) {
       toast.error("Failed to send message. Please try again later.");
+      console.error("Error sending email:", error);
     } finally {
       setIsSubmitting(false);
     }
