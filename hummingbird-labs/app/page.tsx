@@ -60,7 +60,9 @@ export default function Home() {
               </NavigationMenuList>
             </NavigationMenu>
             <Button className="bg-primary hover:bg-primary/90">
-              Get Quote
+              <Link href="#contact" legacyBehavior passHref>
+                Get Quote
+              </Link>
             </Button>
           </div>
         </div>
