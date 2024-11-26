@@ -275,22 +275,11 @@ export default function Home() {
                 <li>Digital Marketing</li>
               </ul>
             </div>
-            <div>
-              <h3 className="font-semibold mb-4">Company</h3>
-              <ul className="space-y-2 text-muted-foreground">
-                <li>About Us</li>
-                <li>Our Work</li>
-                <li>Blog</li>
-                <li>Contact</li>
-              </ul>
-            </div>
+
             <div>
               <h3 className="font-semibold mb-4">Contact</h3>
               <ul className="space-y-2 text-muted-foreground">
-                <li>hello@hummingbirdlabs.com</li>
-                <li>(555) 123-4567</li>
-                <li>123 Web Street</li>
-                <li>San Francisco, CA 94105</li>
+                <li>(323) 829-9212</li>
               </ul>
             </div>
           </div>
