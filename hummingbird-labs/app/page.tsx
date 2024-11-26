@@ -86,9 +86,6 @@ export default function Home() {
                   Get Started
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
-                <Button size="lg" variant="outline">
-                  View Our Work
-                </Button>
               </div>
             </div>
             <div className="relative">
